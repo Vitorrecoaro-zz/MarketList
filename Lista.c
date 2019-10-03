@@ -37,7 +37,7 @@ int main(){
             }
         }
         else if(op==2){
-            imprimelista(l);    
+            imprimelista(l);
         }
         else if(op==3){
             imprimearquivo(l);
@@ -54,7 +54,7 @@ int main(){
             scanf(" %c",&enter);
         }
         enter = 's';
-        system("clear");       
+        system("clear");
         printf("-x-x-x- Menu -x-x-x-\n\n1 - Criar lista.\n2 - Imprimir lista.\n3 - Criar arquivo com a lista.\n4 - Formatar arquivo.\n0 - Sair\n\nDigite a opcao:");
         scanf(" %d",&op);
         system("clear");
@@ -101,22 +101,25 @@ void valoreslista(Lista *l1){
 
 void imprimearquivo(Lista *l1){
     FILE *arq;
+    int nsemanas;
     arq = fopen("Listamercado.txt","a");
     if(arq!=NULL){
         No *aux=l1->inicio;
         int nsemana,n,i;
         printf("Digite o numero de participantes da semana:\n");
         scanf(" %d",&n);
-        for(nsemana=1;nsemana<=41;nsemana++){
+        printf("Digite quantas semanas gostaria de cadastrar:\n");
+        scanf(" %d",&nsemanas);
+        for(nsemana=1;nsemana<=nsemanas;nsemana++){
             fprintf(arq,"Semana: %d\nParticipantes:\n",nsemana);
             for(i=1;i<=n;i++){
                 if(i!=n){
                     fprintf(arq,"%s,",aux->nome);
                 }
                 else {
-                    fprintf(arq,"%s.\n\n",aux->nome);    
+                    fprintf(arq,"%s.\n\n",aux->nome);
                 }
-                aux = aux->prox;   
+                aux = aux->prox;
             }
         }
         printf("Dados alocados na lista.\n");
@@ -159,6 +162,6 @@ void imprimelista(Lista *l1){
             printf("%s\n",aux->nome);
             aux = aux->prox;
         }
-        printf("%s\n",aux->nome);  
+        printf("%s\n",aux->nome);
     }
 }
